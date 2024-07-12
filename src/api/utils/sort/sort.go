@@ -1,6 +1,8 @@
 package sort
 
-import "sort"
+import (
+	"sort"
+)
 
 func BubbleSort(elements []int) {
 	keepWorking := true

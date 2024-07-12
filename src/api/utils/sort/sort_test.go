@@ -1,25 +1,47 @@
 package sort
 
 import (
-	"fmt"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestBubbleSort(t *testing.T) {
 	// init
+	// tests := []struct {
+	// 	input    []int
+	// 	expected []int
+	// }{
+	// 	{[]int{3, 2, 1}, []int{1, 2, 3}},
+	// 	{[]int{}, []int{}},
+	// }
 	elements := []int{9, 7, 5, 3, 1, 2, 4, 6, 8, 0}
+	// for _, test := range tests {
+	// elements := getElemnts(10)
 	// Execution
+
+	// if len(elemnts) != 10 {
+	// 	t.Error("length should be 10")
+	// }
+	assert.Nil(t, elements, "length should be there ")
+	assert.EqualValues(t, 1, len(elements), "length should be 10")
+
+	assert.EqualValues(t, 7, elements[1], "first element should be 7")
+
+	assert.EqualValues(t, 91, elements[0], "first element should be 9")
 	BubbleSort(elements)
 	// Validation
 
-	if elements[0] != 0 {
-		t.Error("first element should be 0")
-	}
+	// if len(elemnts) != 9 {
+	// 	t.Error("length should be 9")
+	// }
 
-	if elements[len(elements)-1] != 9 {
-		t.Error("last elements should be 9")
-	}
-	fmt.Println(elements)
+	// if elements[len(elements)-1] != 9 {
+	// 	t.Error("last elements should be 9")
+	// }
+
+	// }
+
 	// run this command PS C:\Users\HP\Documents\GitHub\go_projects\golang-testing> go test -v ./...
 	// PS C:\Users\HP\Documents\GitHub\go_projects\golang-testing> go test -cover ./...
 	// PS C:\Users\HP\Documents\GitHub\go_projects\golang-testing> go test ./utils/sort -coverprofile coverage.out
@@ -63,6 +85,5 @@ func BenchmarkSort(b *testing.B) {
 
 // 171352              5923 ns/op               0 B/op          0 allocs/op
 // 219704              5649 ns/op               0 B/op          0 allocs/op
-
 
 // PS C:\Users\HP\Documents\GitHub\go_projects\golang-testing\src\api\utils\sort> go test -bench BenchmarkBubbleSort
