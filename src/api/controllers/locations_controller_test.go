@@ -3,7 +3,6 @@ package controllers
 import (
 	"encoding/json"
 	"flag"
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -11,18 +10,14 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/mercadolibre/golang-restclient/rest"
+	"github.com/stepup99/golang-testing/src/api/domain/locations"
 	"github.com/stepup99/golang-testing/src/api/utils/errors"
 	"github.com/stretchr/testify/assert"
 )
 
-func init() {
-	fmt.Println("init >>>>>>>>>>>  init")
-
-}
+var getCountryFunc func(countryId string) (*locations.Country, *errors.ApiError)
 
 func TestMain(m *testing.M) {
-
-	fmt.Println("TestMain >>>>>>>>>>>  TestMain")
 	rest.StartMockupServer()
 	os.Exit(m.Run())
 }
