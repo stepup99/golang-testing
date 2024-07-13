@@ -4,10 +4,17 @@ import (
 	"net/http"
 	"testing"
 
+	"github.com/mercadolibre/golang-restclient/rest"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestGetCountryResetClientError(t *testing.T) {
+	rest.StartMockupServer()
+	rest.AddMockups(&rest.Mock{
+		URL:          "https://api.mercadolibre.com/countries/AR",
+		HTTPMethod:   http.MethodGet,
+		RespHTTPCode: 0,
+	})
 	// Execution``
 	country, err := GetCountry("AR")
 	assert.Nil(t, country)
@@ -18,6 +25,13 @@ func TestGetCountryResetClientError(t *testing.T) {
 }
 
 func TestGetCountryNotFound(t *testing.T) {
+	rest.StartMockupServer()
+	rest.AddMockups(&rest.Mock{
+		URL:          "https://api.mercadolibre.com/countries/AR",
+		HTTPMethod:   http.MethodGet,
+		RespHTTPCode: http.StatusNotFound,
+		RespBody:     `{"message":"Country not found", "error":"not_found", "status":404, "cause":[]}`,
+	})
 	country, err := GetCountry("AR")
 	assert.Nil(t, country)
 	assert.NotNil(t, err)
@@ -26,6 +40,7 @@ func TestGetCountryNotFound(t *testing.T) {
 }
 
 func TestGetCountryInvalidErrorInterface(t *testing.T) {
+	rest.StartMockupServer()
 	country, err := GetCountry("AR")
 	assert.Nil(t, country)
 	assert.NotNil(t, err)
@@ -34,6 +49,7 @@ func TestGetCountryInvalidErrorInterface(t *testing.T) {
 }
 
 func TestGetCountryInvalidJsonResponse(t *testing.T) {
+	rest.StartMockupServer()
 	country, err := GetCountry("AR")
 	assert.Nil(t, country)
 	assert.NotNil(t, err)
@@ -42,6 +58,7 @@ func TestGetCountryInvalidJsonResponse(t *testing.T) {
 }
 
 func TestGetCountryNoError(t *testing.T) {
+	rest.StartMockupServer()
 	country, err := GetCountry("AR")
 	assert.Nil(t, err)
 	assert.NotNil(t, country)
