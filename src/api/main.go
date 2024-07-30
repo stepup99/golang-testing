@@ -12,6 +12,6 @@ func main() {
 	// country, err := locations_provider.GetCountry("AR")
 	// fmt.Println(err)
 	// fmt.Println(country)
-
+	// this is simple server getting created
 	app.StartApp()
 }
