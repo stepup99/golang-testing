@@ -6,6 +6,8 @@ import (
 	"github.com/stepup99/golang-testing/src/api/utils/errors"
 )
 
+// 18:19
+
 type locationsService struct{}
 
 type locationsServiceInterface interface {

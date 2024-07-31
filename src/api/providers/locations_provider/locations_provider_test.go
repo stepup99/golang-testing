@@ -73,5 +73,5 @@ func TestGetCountryNoError(t *testing.T) {
 // error from api
 // invalid error interface
 // valid response
-//          invalid json response
+//          invalid json response (earlier it was string response now they are sending integer)
 //          valid json response no error
